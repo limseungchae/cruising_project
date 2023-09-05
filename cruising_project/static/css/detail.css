@@ -1,0 +1,56 @@
+#main {border: 1px solid black; width: 75%; margin-left: 150px; padding: -5px; position:static}
+#all_top {width: 100%; height: 100%;}
+#all_top::after{clear: both; content: ''; display: block;}
+#top1 {border: 1px solid black; width: 50%; height: 200%;float: left;}
+#pic1 {width: 100%; height: 200%; display: block; margin: 0 auto;}
+#top2 {border:1px solid black; width: 50%; height: 200%; float: left;}
+#food_list {margin-top: 3%; margin-left: 1%; list-style-type :none;}
+#food_list li {margin: 5% 0;}
+#all_bottom {width: 100%; height: 50%;}
+#all_bottom::after{clear: both; content: ''; display: block;}
+#map_pic{width: 50%; float: left; }
+#comment_box{border: 1px solid black; width: 50%; float: left;}
+#all_comment{height: 330px; overflow-y: scroll;}
+#form-commentInfo {border-bottom: 1px solid black;}
+.eachComment{height: auto; max-height: 110px; border-bottom: 1px solid black;}
+#voteUp {width: 52px; height: 32px;}
+#voteDown {width: 53px; height: 32px;}
+
+
+#full_map {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#map_background {
+    width: 120%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+}
+#close_map {position: absolute; top: 0.5%; right: 3.7%; z-index: 3; cursor:pointer;}
+#map {
+    width: 93%;
+    height: 93%;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}

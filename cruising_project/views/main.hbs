@@ -1,0 +1,138 @@
+{{#section 'css'}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        html {
+            margin-left: 250px;
+            margin-right: 250px;
+        }
+
+        .restaurant-lists {
+            position: relative
+        }
+
+        .menu-bars__choice {
+            cursor: pointer;
+        }ahekf
+    </style>
+{{/section}}
+
+{{#section 'script'}}
+    <script src="https://kit.fontawesome.com/b7f69e0a07.js" crossorigin="anonymous"></script>
+    <script src="/js/filter.js"></script>
+    <script>
+        function Onclick(eno) {
+            window.location.href = `/detail?eno=${eno}`
+        }
+    </script>
+
+{{/section}}
+<main>
+    <div class="tag-filters">
+        <div class="tag-filter">
+            <h4 class="tag-filter__title"></h4>
+            <div class="tag-filter__tags">
+                <span class="tag-filter__tag" id="all" data-filter="*">모두</span>
+                <span class="tag-filter__tag" id="kor" data-filter="한식">한식</span>
+                <span class="tag-filter__tag" id="jap" data-filter="일식">일식</span>
+                <span class="tag-filter__tag" id="usa" data-filter="양식">양식</span>
+                <span class="menu-bars__choice"><i class="fa-solid fa-shuffle fa-lg">
+                    <div class="menu-bars"><div class="new"></div></div></i></span>
+                <span class="tag-filter__tag" id="aisan" data-filter="아시아">아시아</span>
+                <span class="tag-filter__tag" id="meat" data-filter="고기">고기</span>
+                <span class="tag-filter__tag" id="seefd" data-filter="주점">주점</span>
+                <span class="tag-filter__tag" id="night" data-filter="야식">야식</span>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <!--밑에 버튼 영역-------------------------------------------------------------------->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <!--이미지 영역----------------------------------------------------------------------->
+        <div class="carousel-inner" id="mainImg">
+            <div class="carousel-item active" data-bs-interval="5000">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCoupon">
+                    <img src="./img/coupon.png" class="d-block w-100" style="width: 1900px; height: 400px;">
+                </a>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <a href="/detail/ladder">
+                    <img src="./img/sadali.png" class="d-block w-100" style="width: 1900px; height: 400px;"></a>
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+
+            <div class="carousel-item" data-bs-interval="5000">
+                <a href="/detail/roulette">
+                    <img src="./img/roulette.png" class="d-block w-100" style="width: 1900px; height: 400px;"></a>
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 모달 영역 -------------------------------------------------------------------------------------->
+        <div class="modal fade" id="modalCoupon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Coupon </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="/detail/coupon"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--캐러셀 양쪽 화살표 영역---------------------------------------------------------------->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+    <div class="restaurant-lists">
+                {{#tag1}}
+                    <div class="restaurant-list" data-type="{{sig}}" data-num="{{cnt}}"
+                        onclick="Onclick({{eno}})">
+                        <div class="restaurant-list__tags">
+                            <span class="restaurant-list__tag">❤️{{grade}}</span>
+                            <span class="restaurant-list__tag">#{{sig}}</span>
+                        </div>
+                        <div class="restaurant-list__imgBox">
+                            <img class="restaurant-list__img" src="./img/fname/{{eno}}.png">
+                        </div>
+                        <div class="restaurant-list__textBox">
+                            <span class="restaurant-list__textBox__name">{{title}}</span>
+                            <span class="restaurant-list__textBox__sub">{{text}}</span>
+                        </div>
+                    </div>
+                {{/tag1}}
+
+            </div>
+</main>
+
+
+
+
+

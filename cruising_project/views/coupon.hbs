@@ -1,0 +1,22 @@
+{{#section 'css'}}
+{{/section}}
+{{#section 'script'}}
+    <script src="/js/coupon.js"></script>
+    <script>
+        // Get the header and footer elements
+        const header = document.querySelector("header");
+        const footer = document.querySelector("footer");
+
+        // Remove the header and footer elements
+        header.parentNode.removeChild(header);
+        footer.parentNode.removeChild(footer);
+    </script>
+{{/section}}
+<main>
+    <div style="display: inline-block;width: 730px;height: 320px;position: absolute;left: 2%;top:2%;background-image: url(https://cdn.inflearn.com/public/files/pages/fdd18d34-a772-4f80-9863-3b0fd5fe60a2/[%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%92%E1%85%B5%E1%84%8B%E1%85%A5%E1%84%85%E1%85%A9]%E1%84%82%E1%85%A1%E1%84%8B%E1%85%A6%E1%84%80%E1%85%A6%E1%84%86%E1%85%A1%E1%86%BD%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4_blog.png);background-size: cover;background-repeat: no-repeat;">
+        <canvas id='canvas' width="730" height="320" style="border: 1px solid gray;"> </canvas>
+    </div>
+</main>
+
+
+

@@ -1,0 +1,112 @@
+{{#section 'css'}}
+    <style>.warn {color: red; font-style: italic}
+    .cap { display: inline-flex; padding: 0;
+        margin: -10px 0 0 -10px; width: 200px }
+    </style>
+    <style>
+        html {
+            margin-left: 250px; margin-right: 250px;
+        }
+
+    </style>
+{{/section}}
+
+{{#section 'script'}}
+    <script src="/js/join.js">
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{{/section}}
+
+<main>
+    <h1 class="text-center">회원 가입</h1>
+    <div class="container">
+        <form name="joinfrm" class="">
+            <div class="row mt-5"> <!--// mt: 마진 탑:-->
+                <label for="email"
+                       class="form-label col-md-5 text-end">이메일</label>
+                <div class="col-md-3">
+                    <input type="text" name="email" id="email"
+                           class="form-control border-dark"></div>
+                <button type="button" class="btn btn-primary col-1" id="checkbtn">
+                    중복확인</button>
+            </div> <!-- // 이메일 -->
+            <div id="warn1" class="warn text-center"></div>
+
+            <div class="row mt-3">
+                <label for="passwd"
+                       class="form-label col-md-5 text-end">비밀번호</label>
+                <div class="col-md-3">
+                    <input type="password" name="passwd" id="passwd"
+                           class="form-control border-dark" ></div>
+            </div> <!-- // 비밀번호 -->
+            <div id="warn2" class="warn text-center"></div>
+
+            <div class="row mt-3">
+                <label for="repasswd"
+                       class="form-label col-md-5 text-end">비밀번호 확인</label>
+                <div class="col-md-3">
+                    <input type="password" name="repasswd" id="repasswd"
+                           class="form-control border-dark" ></div>
+            </div> <!-- // 비밀번호 확인 -->
+            <div id="warn3" class="warn text-center"></div>
+
+            <div class="row mt-3"> <!--// mt: 마진 탑:-->
+                <label for="name"
+                       class="form-label col-md-5 text-end ">이름</label>
+                <div class="col-md-3">
+                    <input type="text" name="name" id="name"
+                           class="form-control border-dark"></div>
+            </div> <!-- // 이름 -->
+            <div id="warn4" class="warn text-center"></div>
+
+            <div class="row mt-3">
+                <label for="phone"
+                       class="form-label col-md-5 text-end ">전화번호</label>
+                <div class="col-md-3">
+                    <input type="text" name="phone" id="phone"
+                           class="form-control border-dark" ></div>
+            </div> <!-- // 전화번호 -->
+            <div id="warn5" class="warn text-center"></div>
+
+            <div class="row mt-3">
+                <label for="nick"
+                       class="form-label col-md-5 text-end ">닉네임</label>
+                <div class="col-md-3">
+                    <input type="text" name="nick" id="nick"
+                           class="form-control border-dark" ></div>
+            </div> <!-- // 닉네임 -->
+            <div id="warn6" class="warn text-center"></div>
+
+            <div class="row mt-3">
+                <label for="bth"
+                       class="form-label col-md-5 text-end ">생년월일</label>
+                <div class="col-md-3">
+                    <input type="text" name="bth" id="bth"
+                           class="form-control border-dark" ></div>
+            </div> <!-- // 생년월일 -->
+            <div id="warn7" class="warn text-center"></div>
+
+
+            <div class="row mt-3">
+                <label for="name"
+                       class="form-label col-md-5 text-end text-danger">자동가입방지</label>
+                <div class="row col-md">
+                    <!--recha-->
+                    <div class="g-recaptcha cap" data-sitekey={{ recaptcha.sitekey }}></div>
+
+                </div>
+            </div> <!-- // 자동가입방지 -->
+
+
+            <div class="row mt-3 mb-5">
+                <div class="col-md text-center">
+                    <button type="button" class="btn btn-primary col-md-2" id="joinbtn">
+                        <i class="bi bi-check"></i> 가입하기</button>
+                    <button type="reset" class="btn btn-danger col-md-2" >
+                        <i class="bi bi-x"></i> 다시입력</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</main>

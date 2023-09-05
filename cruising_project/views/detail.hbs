@@ -1,0 +1,371 @@
+{{#section 'css'}}
+<style>
+    header, footer {
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+</style>
+    <style>
+        #detail_main {
+            border: 1px solid black;
+            width: 44%;
+            min-width: 300px;
+            margin-left: 26%;
+            padding: -5px;
+            position:static;
+        }
+        #all_top {width: 100%; height: 50%; border-bottom: 1px solid black;}
+        #top1 {width: 60%; text-align: center; border-right: 1px solid black;}
+        #pic1 {width: 96%; padding: 3%;}
+        #top2 {width: 55%; height: 50%;}
+        #food_list {margin-top: 3%; margin-left: -10%; list-style-type: none;}
+        #food_list li {margin: 4% 3%;}
+        #all_bottom {width: 100%; height: 49%;}
+        #bottom1 {text-align: center;  border-right: 1px solid black;}
+        #map_pic{width: 90%; cursor:pointer;}
+        #comment_box {width: 100%;}
+        #comment-count {width: 17%; float: left;  margin-right: 7px;}
+        #count {position: absolute; margin-left: 5px;}
+        #all_comment {height: 330px; overflow-y: scroll;}
+        #form-commentInfo {border-bottom: 1px solid black; position: relative; padding: 5px;}
+        #plzlogin {padding-left: 5px ;border-bottom: 1px solid black;}
+        #comment-input {width: 55%;}
+        #submit {border-radius: 5px; background-color: white;}
+        #imot_btn {border-radius: 5px; background-color: white;}
+        #imot{
+            background: white;
+            border: 1px solid black;
+            border-radius: 5px;
+            top :-140%;
+            position: absolute;
+            margin-left: 40%;
+            display: none;
+            text-align:center;
+            width: 230px;
+            height: 190%;
+        }
+        #cls_imt{
+            border-bottom: 1px solid black;
+            text-align: right;
+            width: 230px;
+            height: 26px;
+        }
+        #imot_lefttop{width: 94.9%; text-align: left;}
+        #imot_righttop{cursor:pointer;}
+        #close_imot{right:10px;}
+        #fst_line{text-align: left; margin: 1%;}
+        .eachComment{
+            padding: 10px;
+            height: auto;
+            max-height: 2000px;
+            border-bottom: 1px solid black;
+        }
+        .eachComment:last-child {border-bottom: none;}
+        #voteUp {width: 52px; height: 32px;}
+        #voteDown {width: 53px; height: 32px;}
+
+
+        #full_map {
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #map_background {
+            width: 120%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        #close_map {position: absolute; top: 0.2%; right: 3.7%; z-index: 3; cursor:pointer;}
+        #map {
+            width: 93%;
+            height: 93%;
+            position: relative;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #infowindow{
+            text-align:center;
+            width: auto;
+        }
+        #storname{font-size: 18px; font-weight: bold;}
+        #infoline{border-bottom:1px solid black;}
+
+        .star {
+            float: left;
+            width: 85px;
+            height: 16px;
+            position: relative;
+            font-size: 32px;
+            color: #ddd;
+            margin-top: 4px;
+        }
+
+        #graystar {position: absolute;}
+        #redstar {position: absolute;}
+
+        #starRange {
+            width: 110%;
+            height: 100%;
+            position: absolute;
+            left: -7px;
+            opacity: 0;
+        }
+
+        #starpoint {
+            width: 0;
+            height: 16px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: red;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #side_menu {margin-left: 3%; width: 100%; position: absolute;}
+
+        #history_pic{width:80px; height:50px;}
+
+        #removeCookies {cursor:pointer; z-index: 3; width: 8%}
+
+        .clearfix::before {clear: both}
+    </style>
+{{/section}}
+{{#section 'script'}}
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=014e1d895db37333ff382f2de38cf1f8&libraries=services"></script>
+    <script>
+        const mappic = document.querySelector('#map_pic');
+        const fullmap = document.querySelector('#full_map');
+        const background = document.querySelector('#map_background');
+        const closemap = document.querySelector('#close_map');
+        const pic1 = document.querySelector('#pic1');
+
+        let lat = 37.48596, lon = 126.89707;
+        let test = [lat, lon];
+
+        let picnum = String(mappic.dataset.num);
+        let plus_z = [];
+
+        if(picnum.length<3){
+            let j = 3-picnum.length;
+
+            for(let i=0;i<j;i++){
+                plus_z.push('0');
+            }
+            plus_z.push(picnum)
+        }
+
+        let picname = plus_z.join('');
+        mappic.src = "./img/map/"+picname+".png";
+        pic1.src = "./img/fname/"+pic1.dataset.data+".png";
+
+        const addr = document.querySelector("#addr").innerText;
+        const Storname = document.querySelector("#Storname").innerText;
+        const menu = document.querySelector("#menu").innerText;
+
+        let container = document.getElementById('map');
+
+        mappic.addEventListener('click', () => {
+            fullmap.style.display = 'flex';
+
+            options = {
+                //center: new kakao.maps.LatLng(37.48599755161998, 126.89718681736144), //지도의 중심좌표.
+                center: new kakao.maps.LatLng(test[0], test[1]),
+                level: 2
+            };
+
+            let map = new kakao.maps.Map(container, options);
+
+            function relayout() {
+                map.relayout();
+            }
+
+            let geocoder = new kakao.maps.services.Geocoder();
+
+            // 주소로 좌표를 검색합니다
+            geocoder.addressSearch(addr, function(result, status) {
+
+                // 정상적으로 검색이 완료됐으면
+                if (status === kakao.maps.services.Status.OK) {
+
+                    let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    let marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+
+                    let info1 = `<div id="storname">${Storname}</div>`;
+                    info1 += `<div>${menu}</div>`;
+                    info1 += `<div id="infoline"></div>`;
+                    info1 += `<div id="infoaddr">${addr}</div>`;
+
+
+                    let infowindow = new kakao.maps.InfoWindow({
+                        content: `<span id="infowindow">${info1}</span>`
+                    });
+
+
+                    infowindow.open(map, marker);
+
+
+                    let infowin = document.querySelectorAll('#infowindow');
+                    infowin.forEach(function(e) {
+                        let w = e.offsetWidth + 1;
+                        let h = e.offsetHeight - 20;
+                        e.parentElement.parentElement.style.width = w+5+"px";
+                        e.parentElement.parentElement.style.height = h+"px";
+                        e.parentElement.parentElement.style.borderRadius = "10px";
+                        e.parentElement.parentElement.style.border = "2px solid black";
+                    });
+
+                    map.setCenter(coords);
+                }
+            });
+
+        });
+
+        background.addEventListener('click', e => {
+            fullmap.style.display = "none"
+        });
+
+        closemap.addEventListener('click', e => {
+            fullmap.style.display = "none"
+        });
+
+        const star = document.querySelector('.star');
+        let result = 0;
+        star.addEventListener('click', (event) => {
+            document.querySelector(`.star div`).style.width = `${event.target.value * 10}%`;
+            result = event.target.value;
+        });
+
+
+    </script>
+    <script src="./js/chat.js"></script>
+    <script src="./js/cookies.js"></script>
+{{/section}}
+
+<main>
+    <div id="left_side">
+        <div id="side_menu">
+            <div id="sidelist"></div>
+            <div id="removeCookies">전부 삭제</div>
+        </div>
+    </div>
+    <div id="detail_main">
+        <table id="detail_table">
+            {{#food}}
+                <tr id="all_top">
+                    <td id="top1">
+                        <img src="#" alt="pic1" id="pic1" data-data="{{eno}}">
+                    </td>
+                    <td id="top2">
+                        <div>
+                            <ul id="food_list">
+                                <li>상호 : {{title}}</li>
+                                <li>평점 : {{grade}}</li>
+                                <li>업종 : {{sig}}</li>
+                                <li>전화번호 : {{tel}}</li>
+                                <li>주소 : {{addr}}</li>
+                                <li>영업시간 : {{time}}</li>
+                                <li>주 메뉴 : {{menu}}</li>
+                            </ul>
+                            <div id="addr" style="display: none;">{{addr}}</div>
+                            <div id="Storname" style="display: none;">{{title}}</div>
+                            <div id="menu" style="display: none;">{{menu}}</div>
+                        </div>
+                    </td>
+                </tr>
+
+            <tr id="all_bottom">
+                <td id="bottom1"><img src="#" id="map_pic" data-num="{{eno}}"></td>
+            {{/food}}
+            <td id="comment_box">
+                <div id="form-commentInfo"
+                {{#unless session.userid}}style="display: none"{{/unless}}>
+                    {{#mem}}
+                    <div id="comm_top" data-type="{{nick}}">{{nick}}님 환영합니다.</div>
+                    {{/mem}}
+
+                    <div class="clearfix">
+                    <div id="comment-count">댓글 <span id="count">0</span></div>
+
+                    <div class="star">
+                        <img src="./img/graystar.png" id="graystar">
+                        <div id="starpoint"><img src="./img/redstar.png" id="redstar"></div>
+                        <input type="range" id="starRange" value="0" step="1" min="0" max="10" list="tickmarks">
+                    </div>
+                    </div>
+
+                    <input id="comment-input" placeholder="댓글을 입력해 주세요.">
+                    <button id="submit">등록</button>
+                    <button id="imot_btn">이모티콘</button>
+                    <div id="imot">
+                        <div id="cls_imt">
+                            <table>
+                                <tr>
+                                    <td id="imot_lefttop">
+                                        <div>이모티콘</div>
+                                    </td>
+                                    <td id="imot_righttop">
+                                        <div id="close_imot">X </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="fst_line">
+                                <input type="image" src="./img/emoticon/angry.png" id="imot_angry">
+                                <input type="image" src="./img/emoticon/argh.png" id="imot_argh">
+                                <input type="image" src="./img/emoticon/boo.png" id="imot_boo">
+                                <input type="image" src="./img/emoticon/crying.png" id="imot_crying">
+                                <input type="image" src="./img/emoticon/hmm.png" id="imot_hmm">
+                                <input type="image" src="./img/emoticon/laugh.png" id="imot_laugh">
+                                <input type="image" src="./img/emoticon/lovely.png" id="imot_lovely">
+                                <input type="image" src="./img/emoticon/noo.png" id="imot_noo">
+                                <input type="image" src="./img/emoticon/oh.png" id="imot_oh">
+                                <input type="image" src="./img/emoticon/omg.png" id="imot_omg">
+                                <input type="image" src="./img/emoticon/sleeping.png" id="imot_sleeping">
+                                <input type="image" src="./img/emoticon/smile.png" id="imot_smile">
+                                <input type="image" src="./img/emoticon/umm.png" id="imot_umm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#unless session.userid}}
+                    <div id="plzlogin">댓글 기능은 로그인 후 이용하실 수 있습니다.</div>
+                {{/unless}}
+                <div id="all_comment">
+                    <div id=comments></div>
+                </div>
+            </td>
+            <div id="full_map" style="display: none;">
+                <div id="map_background"></div>
+                <div id="close_map"><img src="./img/x_button.png"></div>
+                <div id="map"></div>
+                <div id="marker"></div>
+            </div>
+        </tr>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,35 @@
+{{#section 'css'}}
+<style>
+    .myinfo, .myinfo td { /*border: 1px solid black;*/ }
+    .myinfo { border-collapse: collapse; width: 300px;
+        margin: 0 auto; }
+    .myinfo td { padding: 7px }
+    .myinfo td:first-child { font-weight: bold;
+        text-align: right }
+</style>
+{{/section}}
+
+{{#section 'script'}}
+    <script>
+        // Get the header and footer elements
+        const header = document.querySelector("header");
+        const footer = document.querySelector("footer");
+
+        // Remove the header and footer elements
+        header.parentNode.removeChild(header);
+        footer.parentNode.removeChild(footer);
+    </script>
+{{/section}}
+
+<main>
+    {{#mb}}
+    <h2>{{name}}님 정보</h2>
+    <table class="myinfo">
+        <tr><td>닉네임</td><td>{{nick}}</td></tr>
+        <tr><td>이름</td><td>{{name}}</td></tr>
+        <tr><td>이메일</td><td>{{email}}</td></tr>
+        <tr><td>생일</td><td>{{bth}}</td></tr>
+        <tr><td>전화번호</td><td>{{phone}}</td></tr>
+        {{/mb}}
+    </table>
+</main>

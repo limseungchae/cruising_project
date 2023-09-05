@@ -1,0 +1,33 @@
+{{#section 'css'}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{{/section}}
+{{#section 'script'}}
+    <script src="/js/ladder.js"></script>
+    <script>
+        // Get the header and footer elements
+        const header = document.querySelector("header");
+        const footer = document.querySelector("footer");
+
+        // Remove the header and footer elements
+        header.parentNode.removeChild(header);
+        footer.parentNode.removeChild(footer);
+    </script>
+{{/section}}
+<main>
+<div style="display: inline-block;width: 602px;height: 402px;position: absolute;left: 30%;top:3%;">
+    <canvas id='canvas' width="600" height="400" style="border: 1px solid gray;"> </canvas>
+    <div>
+        <br>
+        <button type="button" id="btn1">1번</button>
+        <button type="button" id="btn2">2번</button>
+        <button type="button" id="btn3">3번</button>
+        <button type="button" id="btn4">4번</button>
+        <button type="button" id="btn5">5번</button>
+    </div>
+</div>
+</main>
+
+
+
+

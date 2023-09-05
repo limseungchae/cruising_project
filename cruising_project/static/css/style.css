@@ -1,0 +1,85 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Shrikhand&display=swap');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css');
+
+@font-face { font-family: 'NanumBarunGothic';src: url('https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css')}
+@font-face { font-family: 'MaruBuriBold';src: url('https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css')}
+
+
+.common {
+    display: inline-table!important;
+    background-color: white!important;
+    height: 113px!important;
+    padding-top: 15px!important;
+    padding-bottom: 15px!important;
+}
+
+.hcontent {
+    display: table-cell!important;
+    vertical-align: middle!important;
+    font-family: 'MaruBuriBold'!important;
+}
+
+.hleft {
+    text-align: left!important;
+    float:left!important;
+    width: 25%!important;
+}
+
+.hcenter {
+    text-align: center!important;
+    width: 50%!important;
+}
+
+.hright{
+    text-align: right!important;
+    float: right!important;
+    width: 25%!important;
+}
+
+a{
+    text-decoration-line: none!important;
+    color: inherit!important;
+}
+
+#main_logo {
+    font-family: 'Shrikhand', cursive!important;
+    font-size: 240%!important;
+    height: 80%!important;
+}
+
+
+
+/* footer css */
+#footer {
+    margin-top: 50px;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+.footer-box {
+    display: flex;
+    margin-left: 310px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.footer-info {
+    text-align: left;
+    margin-top: 24px;
+    margin-bottom: 1px;
+    margin-right: 45px;
+}
+
+.footer-info > p:first-child {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14.5px;
+}
+
+.footer-info > p:not(:first-of-type) {
+    margin-bottom: 1px;
+    font-size: 12.5px;
+}
